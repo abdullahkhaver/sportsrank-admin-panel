@@ -2,9 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from "express-rate-limit";
-import { errorHandler } from './middleware/error.middleware';
-import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
+// Global Middlewares
+import { errorHandler } from './middleware/error.middleware';
+import { notFound } from './middleware/notFound.middleware.js';
 
 const app = express();
 const allowedOrigins = [
@@ -36,6 +38,8 @@ app.use(morgan('dev'));
 app.get('/api/v1/health', (_, res) => {
   res.status(200).json({ status: 'ok' });
 });
+
+app.use(notFound);
 app.use(errorHandler);
 
 export default app;
