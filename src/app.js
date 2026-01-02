@@ -5,7 +5,7 @@ import rateLimit from "express-rate-limit";
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 // Global Middlewares
-import { errorHandler } from './middleware/error.middleware';
+import { errorHandler } from './middleware/error.middleware.js';
 import { notFound } from './middleware/notFound.middleware.js';
 
 const app = express();
